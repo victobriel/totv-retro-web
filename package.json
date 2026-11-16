@@ -1,0 +1,12 @@
+{
+  "name": "totv-retro-web",
+  "version": "0.1.0",
+  "description": "Player web de jogos retrô para o Totv, sobre o EmulatorJS (GPL-3.0)",
+  "license": "GPL-3.0-or-later",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node test/e2e.mjs"
+  }
+}

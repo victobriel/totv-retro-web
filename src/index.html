@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="img-src 'self' blob: data:; font-src 'self' data:; media-src 'self' blob: data:; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Totv Retro</title>
+<link rel="stylesheet" href="player.css">
+<script src="guard.js"></script>
+</head>
+<body>
+<div id="stage"><div id="game"></div></div>
+<button id="menu-btn" type="button" hidden>&#9776;</button>
+<div id="status" role="status"><div id="status-text"></div><div id="status-bar"><i></i></div><button id="status-action" type="button" hidden></button></div>
+<div id="menu" role="dialog" aria-modal="true" hidden></div>
+<div id="toast" role="status" aria-live="polite"></div>
+<script type="module" src="player.js"></script>
+</body>
+</html>

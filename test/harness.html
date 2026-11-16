@@ -1,0 +1,24 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Harness Totv Retro Web</title>
+<style>html,body{margin:0;height:100%;background:#222}iframe{border:0;width:100vw;height:100vh}</style>
+<iframe id="f" allow="autoplay; gamepad; fullscreen"></iframe>
+<script>
+// Simula o "pai" Totv: abre o iframe e responde ao handshake. Não faz parte do dist/.
+const q = new URLSearchParams(location.search);
+const item = q.get('item') || '1';
+window.__events = [];
+const f = document.getElementById('f');
+f.src = '/retro/index.html#item=' + item + '&media=&state=' + (q.get('state') || '');
+addEventListener('message', (e) => {
+  if (e.source !== f.contentWindow || e.origin !== location.origin) return;
+  window.__events.push(e.data);
+  if (e.data && e.data.type === 'totv-retro:ready') {
+    f.contentWindow.postMessage({
+      type: 'totv-retro:init', server: q.get('server') || location.origin, token: 'scoped-player-token', itemId: Number(item),
+      mediaId: q.get('media') ? Number(q.get('media')) : undefined, stateId: q.get('state') ? Number(q.get('state')) : undefined,
+      title: q.get('title') || 'Jogo de teste', platform: q.get('platform') || undefined, lang: q.get('lang') || 'pt-BR',
+    }, location.origin);
+  }
+});
+</script>
