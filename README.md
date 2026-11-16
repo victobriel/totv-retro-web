@@ -1,6 +1,6 @@
 # totv-retro-web
 
-Player web de jogos retrô para o [Totv](https://github.com/), construído sobre o [EmulatorJS](https://emulatorjs.org) 4.2.3.
+Player web de jogos retrô para o Totv, construído sobre o [EmulatorJS](https://emulatorjs.org) 4.2.3.
 Projeto **separado e GPL-3.0-or-later** (veja `LICENSE`): não contém nem importa código do Totv. A única interface com o servidor
 é a "Games API" (HTTP + `postMessage`), descrita no `docs/games-api.md` do Totv.
 
