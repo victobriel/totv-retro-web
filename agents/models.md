@@ -10,6 +10,7 @@ Critério: usar o **modelo mais barato que dá conta** da tarefa. Subir de model
 | `build-vendor` | **Sonnet** | **Opus** para troca de versão do EmulatorJS ou de núcleo (SHA256, licença, supply chain). Haiku para `npm run build` e checagens de arquivo | Script bash/Node com verificação de SHA256 e cópia de árvore. Mudança de vendor altera o que o usuário executa, por isso revisão Opus. |
 | `testes-e2e` | **Sonnet** | Haiku para ler log e resumir falha; Opus se a falha for intermitente e envolver timing do emulador | Puppeteer, mock de servidor e asserções sobre canvas/SRAM exigem depuração de código, mas não de arquitetura. |
 | `docs-licencas` | **Haiku** (`claude-haiku-5-5`) | **Sonnet** para escrever seção nova (ex.: instalação, plataforma nova); decisão de licença fica com a pessoa | Texto e tabela com fatos já presentes no repo (`THIRD_PARTY.md`, `README.md`). Barato e suficiente para atualizar versões, links e SHAs já verificados. |
+| `orquestrador` | **Sonnet** (`claude-sonnet-5-5`) | **Opus** só quando a própria tarefa for decisão de arquitetura que cruza áreas (regra 2, último item) | Roteamento, ordem de fluxo e leitura da prova dos workers são raciocínio curto, mas exigem julgar se a prova cobre o critério de pronto e quando redistribuir. Haiku bastaria para despachar, mas erraria mais nesse julgamento, que é o ponto de falha caro (tarefa dada como pronta sem prova). Sonnet é o custo-benefício: não usa Opus, porque o orquestrador não decide arquitetura, só roteia. |
 
 ## Usos de Haiku fora de "docs"
 

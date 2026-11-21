@@ -17,13 +17,15 @@ pela pessoa que executa a tarefa.
 
 ## Áreas e agentes
 
-| Área | Agente | Arquivo de definição | Modelo padrão |
-|---|---|---|---|
+| Coordenação (ponto de entrada das tarefas) | `orquestrador` | [orquestrador.md](orquestrador.md) | Sonnet |
 | Frontend do player (UI, menu, i18n, seleção de núcleo) | `frontend-player` | [frontend-player.md](frontend-player.md) | Sonnet |
 | Integração com a Games API e fronteira de segurança | `api-seguranca` | [api-seguranca.md](api-seguranca.md) | Sonnet (revisão: Opus) |
 | Build, vendor do EmulatorJS e supply chain | `build-vendor` | [build-vendor.md](build-vendor.md) | Sonnet (mudança de versão: Opus) |
 | Testes end-to-end | `testes-e2e` | [testes-e2e.md](testes-e2e.md) | Sonnet |
 | Documentação e licenças | `docs-licencas` | [docs-licencas.md](docs-licencas.md) | Haiku (texto novo: Sonnet) |
+
+**Ponto de entrada:** toda tarefa começa pelo `orquestrador`, que escolhe os agentes acima, despacha cada um e
+consolida o resultado. Ele não edita arquivos.
 
 Tabela de modelos, justificativas e regra de roteamento: [models.md](models.md).
 
