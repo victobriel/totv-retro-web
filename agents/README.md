@@ -29,6 +29,19 @@ consolida o resultado. Ele não edita arquivos.
 
 Tabela de modelos, justificativas e regra de roteamento: [models.md](models.md).
 
+## Como usar: `claude --agent orquestrador`
+
+Na raiz do repositório:
+
+```sh
+claude --agent orquestrador
+```
+
+O Claude Code lê os sub-agentes de `.claude/agents/<agente>.md` (um por área, mesmo nome deste diretório). Cada um
+aponta para o arquivo de `agents/` e declara o modelo (`sonnet`, `haiku`; revisão `opus` pelo orquestrador). O
+orquestrador chama cada área pela ferramenta Agent. Os arquivos de `agents/` continuam sendo a fonte da verdade:
+`.claude/agents/` não duplica escopo nem regras.
+
 ## Mapa de propriedade dos arquivos
 
 Cada arquivo tem **um** dono de escrita. Os outros agentes podem ler, mas devem escalar para editar.

@@ -64,11 +64,22 @@ Regra de roteamento:
 
 ## Como despachar
 
-Cada sub-agente é um worker do Orca iniciado com o arquivo `agents/<agente>.md` como instrução, no escopo dele.
+**Caminho principal: sub-agentes nativos do Claude Code.** Cada área tem um sub-agente em
+`.claude/agents/<agente>.md`, com o mesmo nome deste arquivo. Ele aponta para `agents/<agente>.md` (fonte da verdade)
+e já traz o modelo do frontmatter, conforme [models.md](models.md). Chame-o com a ferramenta Agent:
 
-Modelo por agente: o indicado em [models.md](models.md). Padrão: `frontend-player`, `api-seguranca`, `build-vendor`
-e `testes-e2e` em Sonnet (`claude-sonnet-5-5`); `docs-licencas` em Haiku (`claude-haiku-5-5`); revisão em Opus
-(`claude-opus-5-5`).
+```
+Agent(subagent_type="frontend-player", description="<tarefa curta>",
+      prompt="<tarefa, escopo, caminhos permitidos e prova exigida>")
+```
+
+- **Revisão Opus:** passe `model: "opus"` na mesma chamada, com instrução de somente leitura. Não crie agente de revisão.
+- **Paralelo:** chamadas Agent independentes na mesma resposta, só com escopos de escrita disjuntos.
+- Sub-agentes não chamam outros sub-agentes: o despacho é sempre feito por este orquestrador.
+
+**Alternativa: worker do Orca.** Use para tarefa longa ou que deva rodar em workspace separado (worktree próprio). Cada
+worker recebe o `agents/<agente>.md` como instrução, no escopo dele. Modelo por agente: o de [models.md](models.md)
+(`claude-sonnet-5-5`, `claude-haiku-5-5`, `claude-opus-5-5`).
 
 Comando de referência (o `--spec` de texto livre sofre com aspas; usar `--spec-file` com um arquivo temporário no
 scratchpad, com o conteúdo de `agents/<agente>.md` seguido da tarefa, do escopo e da prova exigida):
